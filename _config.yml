@@ -1,56 +1,43 @@
-# Configurations
-title:            Jekyll Gitbook
-longtitle:        Jekyll Gitbook
-author:           HE Tao
-email:            sighingnow@gmail.com
-description: >
-  Build Jekyll site with the GitBook style.
-
-version:          1.0
-gitbook_version:  3.2.3
-
-url:              'https://sighingnow.github.io'
-baseurl:          '/jekyll-gitbook'
-rss:              RSS
-
-toc:
-  enabled: true
-  h_min: 1
-  h_max: 3
-
-# markdown render engine.
-markdown:         kramdown
-kramdown:
-  auto_ids:               true
-  input:                  GFM
-  math_engine:            mathjax
-  smart_quotes:           lsquo,rsquo,ldquo,rdquo
-  toc_levels:             1..6
-  syntax_highlighter:     rouge
-  syntax_highlighter_opts:
-    guess_lang:           true
-
-syntax_highlighter_style: colorful
-
-markdown_ext:     markdown,mkdown,mkdn,mkd,md
-
-# Permalinks
-permalink:        /:categories/:year-:month-:day-:title:output_ext
-
-exclude:
-  - _drafts
-
-collections:
-  pages:
-    output: true
-    permalink: /:collection/:path/
-
-page_width: 800px
-
-destination:      ./_site
-incremental:      false
-regenerate:       true
+title: Hamilton
+description: A minimal and beautiful Jekyll theme best for writing and note-taking.
+author: Shangzhi Huang
+avatar: /logo.png
+email: ngzhio@gmail.com
 
 plugins:
+  - jekyll-seo-tag
   - jekyll-feed
-  - jemoji
+  - jekyll-sitemap
+  - jekyll-paginate
+
+paginate: 10
+
+# Uncomment the below line and set the tracking ID for enabling Google Analytics
+# 
+# google_analytics: 
+
+# Uncomment the below lines and set the Disqus shortname for enabling Disqus
+# 
+# disqus:
+
+# Jekyll
+# ======
+exclude:
+  - scripts/
+  - README.md
+  - jekyll-theme-hamilton.gemspec
+
+# Jekyll SEO Tag (Optional)
+# =========================
+twitter:
+  username: ngzhio
+  card: summary
+logo: logo.png
+social:
+  name: Shangzhi Huang
+  links:
+    - https://twitter.com/ngzhio
+    - https://www.facebook.com/ngzhio
+    - https://github.com/ngzhio
+google_site_verification: u4WXQl0Eu66rsQo2kRdCNx
+lang: en
