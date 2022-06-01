@@ -1,16 +1,17 @@
 ---
 layout: post
 toc: true
+math: true
 title: "[Matlab]先来点oldschool的PID，再来点现代控制"
 categories: MATLAB
 tags: [MATLAB, PID, MIMO]
-math: true
+
 author:
   - Towl Lynn
 ---
 
 
-##1.运动学与动力学建模
+## 1.运动学与动力学建模
 ![cartpole](https://raw.githubusercontent.com/ink-machine/ink-machine.github.io/main/_posts/cartpole.png "一个三岁小孩都喜欢的倒立摆模型")
 如图1所示，首先建立一个经典的一阶倒立摆模型，一辆小车顶部通过铰链与一个长杆相连，控制变量为作用于小车的水平推力F，受控变量为杆与竖直向下方向的夹角θ。
 
@@ -51,7 +52,7 @@ $$
 (M+m) \ddot{x}+b \dot{x}-m l \ddot{\phi}=u
 \end{array}
 $$
-##2.状态空间模型
+## 2.状态空间模型
 可以看出在上式中出现了位置和角度的二阶倒数，选取$x$，$\dot{x}$,$\phi$，$\dot{\phi}$作为系统状态X，输出Y为$x$,$\phi$,整理上式得
 $$
 \left\{\begin{array}{l}
@@ -99,8 +100,8 @@ x \\
 \end{array}\right]
 $$
 在MATLAB中编写对应代码，控制步长T为0.02s，设置初始状态为$(x=0,\phi=\frac{\pi}{60})$，可以看出系统状态变化剧烈，有震荡衰减趋势，根据物理学常识判断，由于摩擦力的影响，系统最终会稳定在$\theta=0$的状态。所以初始状态是一个不稳定平衡点。
-##3.能控能观性与系统零极点
-###3.1 能控性分析
+## 3.能控能观性与系统零极点
+### 3.1 能控性分析
 构建能控性矩阵，
 $$
 Q=\left[\begin{array}{llll}
@@ -117,7 +118,7 @@ Q=\left[\begin{array}{cccc}
 \end{array}\right]
 $$
 利用指令rank(Q)，可得能控性矩阵满秩，所以系统可控。
-###3.2 能控性分析
+### 3.2 能控性分析
 构建能观性矩阵，
 $$
 P=\left[\begin{array}{c}
@@ -141,7 +142,7 @@ P=\left[\begin{array}{cccc}
 \end{array}\right]
 $$
 利用指令rank(P)，可得能观性矩阵满秩，所以系统可观。
-###3.3 零极点分析
+### 3.3 零极点分析
 利用matlab指令，sys=ss(A,B,C,D)；G=zpk(sys)，可得系统的传递函数。
 $$
 \left\{\begin{array}{l}
@@ -150,8 +151,8 @@ G_{2}(s)=\frac{1.9231(s-0.3057)(s+0.4403)}{(s-4.751)(s+4.761)(s+0.125)}
 \end{array}\right.
 $$
 可以看出系统的极点并非全部为负实部，所以系统不稳定。
-##4.控制器设计
-###4.1 oldschoolのPID
+## 4.控制器设计
+### 4.1 oldschoolのPID
 在实际工程之中，由于模型十分复杂，很难建立精确模型，反而利用泛用性更好的PID控制能得到更好的效果。
 $$
 F=K p_{\theta} * \operatorname{Err}(\theta)-K d_{\theta} * \dot{\theta}-K i_{\theta} * \int \operatorname{Err}(\theta) d t
@@ -163,7 +164,7 @@ $$
 设置初始状态为$(x=0,\phi=\frac{\pi}{20}),K p_{\theta}=100, K i_{\theta}=1, K d_{\theta}=20,K p_{x}=0.07, K i_{x}=0.07, K d_{x}=0.001,$仿真结果如图所示，可见系统在较大的初始扰动下，PID控制可以使系统逐渐稳定与初始状态，但是控制时间和效果一般般。这是因为PID控制没有利用系统内在的特性，这既是优势也是劣势，泛用性强的缺点就是控制效果稍差。
 ![pid](https://raw.githubusercontent.com/ink-machine/ink-machine.github.io/main/_posts/pid_control.png)
 
-###4.2mordenのMIMO
+### 4.2mordenのMIMO
 由于系统可控可观，所以可以设计状态反馈器，利用matlab指令K=acker(A,B,P)，其中P为期望极点，将期望极点配置为[-5，-5，-5，-5]。通过指令得到增益向量K为
 $$
 K=\left[\begin{array}{llll}
