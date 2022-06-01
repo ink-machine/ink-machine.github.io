@@ -100,7 +100,7 @@ x \\
 \end{array}\right]
 $$
 在MATLAB中编写对应代码，控制步长T为0.02s，设置初始状态为$(x=0,\phi=\frac{\pi}{60})$，可以看出系统状态变化剧烈，有震荡衰减趋势，根据物理学常识判断，由于摩擦力的影响，系统最终会稳定在$\theta=0$的状态。所以初始状态是一个不稳定平衡点。
-![force_analysis](https://raw.githubusercontent.com/ink-machine/ink-machine.github.io/main/instable_curve.png)
+![instable_curve](https://raw.githubusercontent.com/ink-machine/ink-machine.github.io/main/instable_curve.png)
 ## 3.能控能观性与系统零极点
 ### 3.1 能控性分析
 构建能控性矩阵，
