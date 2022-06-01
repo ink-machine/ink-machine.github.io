@@ -4,13 +4,13 @@
   <meta charset="utf-8">
   
   
-  <title>[Matlab]先来点oldschool的PID，再来点现代控制 | Open pendulum</title>
+  <title>[Matlab]先来点oldschool的PID，再来点现代控制 | Open Pendulum</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="1.运动学与动力学建模如图所示，首先建立一个经典的一阶倒立摆模型，一辆小车顶部通过铰链与一个长杆相连，控制变量为作用于小车的水平推力F，受控变量为杆与竖直向下方向的夹角θ。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="[Matlab]先来点oldschool的PID，再来点现代控制">
 <meta property="og:url" content="http://example.com/2022/06/01/oldschool-PID-and-morden-MIMO/index.html">
-<meta property="og:site_name" content="Open pendulum">
+<meta property="og:site_name" content="Open Pendulum">
 <meta property="og:description" content="1.运动学与动力学建模如图所示，首先建立一个经典的一阶倒立摆模型，一辆小车顶部通过铰链与一个长杆相连，控制变量为作用于小车的水平推力F，受控变量为杆与竖直向下方向的夹角θ。">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/.com//cartpole.png">
@@ -19,7 +19,7 @@
 <meta property="og:image" content="http://example.com/.com//pid_control.png">
 <meta property="og:image" content="http://example.com/.com//mimo_control.png">
 <meta property="article:published_time" content="2022-06-01T09:43:11.000Z">
-<meta property="article:modified_time" content="2022-06-01T09:44:50.828Z">
+<meta property="article:modified_time" content="2022-06-01T10:39:49.894Z">
 <meta property="article:author" content="Towl Lynn">
 <meta property="article:tag" content="Matlab">
 <meta property="article:tag" content="PID">
@@ -27,7 +27,7 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/.com//cartpole.png">
   
-    <link rel="alternate" href="/atom.xml" title="Open pendulum" type="application/atom+xml">
+    <link rel="alternate" href="/atom.xml" title="Open Pendulum" type="application/atom+xml">
   
   
     <link rel="shortcut icon" href="/favicon.png">
@@ -55,7 +55,7 @@
   <div id="header-outer" class="outer">
     <div id="header-title" class="inner">
       <h1 id="logo-wrap">
-        <a href="/" id="logo">Open pendulum</a>
+        <a href="/" id="logo">Open Pendulum</a>
       </h1>
       
         <h2 id="subtitle-wrap">
@@ -112,75 +112,117 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h2 id="1-运动学与动力学建模"><a href="#1-运动学与动力学建模" class="headerlink" title="1.运动学与动力学建模"></a>1.运动学与动力学建模</h2><p><img src="/.com//cartpole.png" alt="cartpole" title="一个三岁小孩都喜欢的倒立摆模型"><br>如图所示，首先建立一个经典的一阶倒立摆模型，一辆小车顶部通过铰链与一个长杆相连，控制变量为作用于小车的水平推力F，受控变量为杆与竖直向下方向的夹角θ。</p>
-<span id="more"></span>
-<table>
-<thead>
-<tr>
-<th align="center"><strong>变量名</strong></th>
-<th><strong>含义</strong></th>
-<th><strong>值</strong></th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">M</td>
-<td>小车质量</td>
-<td>1kg</td>
-</tr>
-<tr>
-<td align="center">m</td>
-<td>杆质量</td>
-<td>0.2kg</td>
-</tr>
-<tr>
-<td align="center">F</td>
-<td>水平推力-<strong>控制量</strong></td>
-<td>-</td>
-</tr>
-<tr>
-<td align="center">θ</td>
-<td>杆与竖直向下方向的夹角</td>
-<td>-</td>
-</tr>
-<tr>
-<td align="center">b</td>
-<td>小车摩擦系数</td>
-<td>0.15N&#x2F;m&#x2F;sec</td>
-</tr>
-<tr>
-<td align="center">x</td>
-<td>小车位移</td>
-<td>-</td>
-</tr>
-<tr>
-<td align="center">l</td>
-<td>铰链到杆质心的距离</td>
-<td>0.2m</td>
-</tr>
-<tr>
-<td align="center">I</td>
-<td>杆相对于铰链的转动惯量</td>
-<td>0.01067kg*m^2</td>
-</tr>
-<tr>
-<td align="center">T</td>
-<td>采样时间</td>
-<td>0.05s</td>
-</tr>
-</tbody></table>
+        <h2 id="1-运动学与动力学建模"><a href="#1-运动学与动力学建模" class="headerlink" title="1.运动学与动力学建模"></a>1.运动学与动力学建模</h2><p><img src="/.com//cartpole.png" alt="cartpole" title="一个三岁小孩都喜欢的倒立摆模型"><br>如图所示，首先建立一个经典的一阶倒立摆模型，一辆小车顶部通过铰链与一个长杆相连，控制变量为作用于小车的水平推力F，受控变量为杆与竖直向下方向的夹角θ。<br><span id="more"></span><br>| <strong>变量名</strong> | <strong>含义</strong>      | <strong>值</strong>         |<br>|:————-:|——————-|———————-|<br>| M       | 小车质量        | 1kg           |<br>| m       | 杆质量         | 0.2kg         |<br>| F       | 水平推力-<strong>控制量</strong>    | -             |<br>| θ       | 杆与竖直向下方向的夹角 | -             |<br>| b       | 小车摩擦系数      | 0.15N/m/sec   |<br>| x       | 小车位移        | -             |<br>| l       | 铰链到杆质心的距离   | 0.2m          |<br>| I       | 杆相对于铰链的转动惯量 | 0.01067kg*m^2 |<br>| T       | 采样时间        | 0.05s         |</p>
 <p>分别对小车和杆件进行水平受力分析，如图2，可得</p>
-<p>$$<br>\begin{array}{c}<br>M \dot{x}&#x3D;F-b \dot{x}-F_{x \text { 杆 }} \<br>F_{x \text { 杆 }}&#x3D;m \ddot{x}+m l \ddot{\theta} \cos \theta-m l \dot{\theta}^{2} \sin \theta \<br>F_{y \text { 杆 }}-m g&#x3D;m l \ddot{\theta} \sin \theta-m l \dot{\theta}^{2} \cos \theta \<br>-F_{y \text { 杆 }} l \sin \theta-F_{x \text { 杆 }} l \cos \theta&#x3D;I \ddot{\theta}<br>\end{array}<br>$$<br>式1为小车的动力学方程，式2-4分别为杆件的水平受力分析、竖直受力分析和力矩平衡方程。由1和2可得运动方程，由式2-4可得另一个运动方程。<br>$$<br>\begin{array}{c}<br>(M+m) \ddot{x}+b \dot{x}+m l \ddot{\theta} \cos \theta-m l \dot{\theta}^{2} \sin \theta&#x3D;F \<br>(I+m l) \ddot{\theta}+m g l \sin \theta&#x3D;-m l \ddot{x} \cos \theta<br>\end{array}<br>$$<br><img src="/.com//force.png" alt="force_analysis"><br>由于上式过于复杂，且非线性很强，所以首先在平衡点附近进行线性化简化。根据观察可得$(x&#x3D;0,\theta&#x3D;\pi)$和$(x&#x3D;0,\theta&#x3D;0)$为系统的两个平衡点，但其中$(x&#x3D;0,\theta&#x3D;\pi)$是我们控制的目标，所以在$(x&#x3D;0,\theta&#x3D;\pi)$附近线性化，设$\theta&#x3D;\phi+\pi$，在平衡点附近时有$\sin\theta&#x3D;-\phi,\cos\theta&#x3D;-1$，。可以得到线性化后的系统微分方程<br>$$<br>\begin{array}{c}<br>\left(I+m l^{2}\right) \ddot{\phi}-m g l \phi&#x3D;m l \ddot{x} \<br>(M+m) \ddot{x}+b \dot{x}-m l \ddot{\phi}&#x3D;u<br>\end{array}<br>$$</p>
-<h2 id="2-状态空间模型"><a href="#2-状态空间模型" class="headerlink" title="2.状态空间模型"></a>2.状态空间模型</h2><p>可以看出在上式中出现了位置和角度的二阶倒数，选取$x$，$\dot{x}$,$\phi$，$\dot{\phi}$作为系统状态X，输出Y为$x$,$\phi$,整理上式得<br>$$<br>\left{\begin{array}{l}<br>\ddot{x}&#x3D;\frac{-\left(I+m l^{2}\right) b}{I(M+m)+M m l^{2}} \dot{x}+\frac{m^{2} g l^{2}}{I(M+m)+M m l^{2}} \phi+\frac{\left(I+m l^{2}\right)}{I(M+m)+M m l^{2}} u \<br>\ddot{\phi}&#x3D;\frac{-m l b}{I(M+m)+M m l^{2}} \dot{x}+\frac{m g l(M+m)}{I(M+m)+M m l^{2}} \phi+\frac{m l}{I(M+m)+M m l^{2}} u<br>\end{array}\right.<br>$$<br>写作矩阵形式可得，<br>$$<br>\left[\begin{array}{c}<br>\dot{x} \<br>\ddot{x} \<br>\dot{\phi} \<br>\ddot{\phi}<br>\end{array}\right]&#x3D;\left[\begin{array}{cccc}<br>0 &amp; 1 &amp; 0 &amp; 0 \<br>0 &amp; \frac{-\left(I+m l^{2}\right) b}{I(M+m)+M m l^{2}} &amp; \frac{m^{2} g l^{2}}{I(M+m)+M m l^{2}} &amp; 0 \<br>0 &amp; 0 &amp; 0 &amp; 1 \<br>0 &amp; \frac{-m l b}{I(M+m)+M m l^{2}} &amp; \frac{m g l(M+m)}{I(M+m)+M m l^{2}} &amp; 0<br>\end{array}\right]\left[\begin{array}{l}<br>x \<br>\dot{x} \<br>\phi \<br>\dot{\phi}<br>\end{array}\right]+\left[\begin{array}{c}<br>0 \<br>\frac{\left(I+m l^{2}\right)}{I(M+m)+M m l^{2}} \<br>0 \<br>u \<br>\frac{m l}{I(M+m)+M m l^{2}}<br>\end{array}\right]<br>$$<br>$$<br>\left[\begin{array}{l}<br>x \<br>\phi<br>\end{array}\right]&#x3D;\left[\begin{array}{llll}<br>1 &amp; 0 &amp; 0 &amp; 0 \<br>0 &amp; 0 &amp; 1 &amp; 0<br>\end{array}\right]\left[\begin{array}{l}<br>x \<br>\dot{x} \<br>\phi \<br>\dot{\phi}<br>\end{array}\right]<br>$$<br>在MATLAB中编写对应代码，控制步长T为0.02s，设置初始状态为$(x&#x3D;0,\phi&#x3D;\frac{\pi}{60})$，可以看出系统状态变化剧烈，有震荡衰减趋势，根据物理学常识判断，由于摩擦力的影响，系统最终会稳定在$\theta&#x3D;0$的状态。所以初始状态是一个不稳定平衡点。<br><img src="/.com//instable_curve.png" alt="instable_curve"></p>
-<h2 id="3-能控能观性与系统零极点"><a href="#3-能控能观性与系统零极点" class="headerlink" title="3.能控能观性与系统零极点"></a>3.能控能观性与系统零极点</h2><h3 id="3-1-能控性分析"><a href="#3-1-能控性分析" class="headerlink" title="3.1 能控性分析"></a>3.1 能控性分析</h3><p>构建能控性矩阵，<br>$$<br>Q&#x3D;\left[\begin{array}{llll}<br>B &amp; A B &amp; A^{2} B &amp; A^{3} B<br>\end{array}\right]<br>$$<br>利用matlab指令，<strong>Q &#x3D; ctrb(A,B)</strong> 可得，<br>$$<br>Q&#x3D;\left[\begin{array}{cccc}<br>0 &amp; 0.8974 &amp; 1.3289 &amp; -0.1789 \<br>0.8974 &amp; 1.3289 &amp; -0.1789 &amp; 32.6145 \<br>1.9231 &amp; 0 &amp; 43.2322 &amp; -0.3833 \<br>0 &amp; 43.2322 &amp; -0.3833 &amp; 977.7655<br>\end{array}\right]<br>$$<br>利用指令rank(Q)，可得能控性矩阵满秩，所以系统可控。</p>
-<h3 id="3-2-能控性分析"><a href="#3-2-能控性分析" class="headerlink" title="3.2 能控性分析"></a>3.2 能控性分析</h3><p>构建能观性矩阵，<br>$$<br>P&#x3D;\left[\begin{array}{c}<br>C \<br>C A \<br>C A^{2} \<br>C A^{3}<br>\end{array}\right]<br>$$<br>利用matlab指令，P&#x3D;obsv(A,C)可得，<br>$$<br>P&#x3D;\left[\begin{array}{cccc}<br>1 &amp; 0 &amp; 0 &amp; 0 \<br>0 &amp; 0 &amp; 1 &amp; 0 \<br>0 &amp; 1 &amp; 0 &amp; 0 \<br>0 &amp; 0 &amp; 0 &amp; 1 \<br>0 &amp; -0.134615384615385 &amp; 0.753846153846154 &amp; 0 \<br>0 &amp; -0.288461538461538 &amp; 22.6153846153846 &amp; 0 \<br>0 &amp; 0.0181213017751479 &amp; -0.101479289940828 &amp; 0.753846153846154 \<br>0 &amp; 0.0388313609467456 &amp; -0.217455621301775 &amp; 22.6153846153846<br>\end{array}\right]<br>$$<br>利用指令rank(P)，可得能观性矩阵满秩，所以系统可观。</p>
-<h3 id="3-3-零极点分析"><a href="#3-3-零极点分析" class="headerlink" title="3.3 零极点分析"></a>3.3 零极点分析</h3><p>利用matlab指令，sys&#x3D;ss(A,B,C,D)；G&#x3D;zpk(sys)，可得系统的传递函数。<br>$$<br>\left{\begin{array}{l}<br>G_{1}(s)&#x3D;\frac{0.89744(s+5.631)(s-4.016)}{s(s-4.751)(s+4.761)(s+0.125)} \<br>G_{2}(s)&#x3D;\frac{1.9231(s-0.3057)(s+0.4403)}{(s-4.751)(s+4.761)(s+0.125)}<br>\end{array}\right.<br>$$<br>可以看出系统的极点并非全部为负实部，所以系统不稳定。</p>
-<h2 id="4-控制器设计"><a href="#4-控制器设计" class="headerlink" title="4.控制器设计"></a>4.控制器设计</h2><h3 id="4-1-oldschoolのPID"><a href="#4-1-oldschoolのPID" class="headerlink" title="4.1 oldschoolのPID"></a>4.1 oldschoolのPID</h3><p>在实际工程之中，由于模型十分复杂，很难建立精确模型，反而利用泛用性更好的PID控制能得到更好的效果。<br>$$<br>F&#x3D;K p_{\theta} * \operatorname{Err}(\theta)-K d_{\theta} * \dot{\theta}-K i_{\theta} * \int \operatorname{Err}(\theta) d t<br>$$<br>这样可以控制杆件与竖直距离的夹角，但是无法控制小车的位移与速度，根据观察，杆件的夹角与小车速度变化存在一定的关系，所以再加一层PID控制，根据小车距离误差和速度改变杆件的期望角度。<br>$$<br>\operatorname{Des}<em>{-} \theta&#x3D;K p</em>{\mathrm{x}} * \operatorname{Err}(x)-K d_{x} * \dot{x}-K i_{x} * \int \operatorname{Err}(x) d t<br>$$<br>设置初始状态为$(x&#x3D;0,\phi&#x3D;\frac{\pi}{20}),K p_{\theta}&#x3D;100, K i_{\theta}&#x3D;1, K d_{\theta}&#x3D;20,K p_{x}&#x3D;0.07, K i_{x}&#x3D;0.07, K d_{x}&#x3D;0.001,$仿真结果如图所示，可见系统在较大的初始扰动下，PID控制可以使系统逐渐稳定与初始状态，但是控制时间和效果一般般。这是因为PID控制没有利用系统内在的特性，这既是优势也是劣势，泛用性强的缺点就是控制效果稍差。<br><img src="/.com//pid_control.png" alt="pid"></p>
-<h3 id="4-2mordenのMIMO"><a href="#4-2mordenのMIMO" class="headerlink" title="4.2mordenのMIMO"></a>4.2mordenのMIMO</h3><p>由于系统可控可观，所以可以设计状态反馈器，利用matlab指令K&#x3D;acker(A,B,P)，其中P为期望极点，将期望极点配置为[-5，-5，-5，-5]。通过指令得到增益向量K为<br>$$<br>K&#x3D;\left[\begin{array}{llll}<br>-30.84 &amp; -24.51 &amp; 104.151 &amp; 21.91<br>\end{array}\right]<br>$$<br>设置初始状态为$(x&#x3D;0,\phi&#x3D;\frac{\pi}{20})$，引入状态反馈，仿真结果如下图所示，可见系统在较大的初始扰动下，能够迅速地恢复初始位姿，比普通的PID不知道高到哪里去了。<br><img src="/.com//mimo_control.png" alt="mimo"></p>
+<script type="math/tex; mode=display">
+\begin{array}{c}
+M \dot{x}=F-b \dot{x}-F_{x \text { 杆 }} \\
+F_{x \text { 杆 }}=m \ddot{x}+m l \ddot{\theta} \cos \theta-m l \dot{\theta}^{2} \sin \theta \\
+F_{y \text { 杆 }}-m g=m l \ddot{\theta} \sin \theta-m l \dot{\theta}^{2} \cos \theta \\
+-F_{y \text { 杆 }} l \sin \theta-F_{x \text { 杆 }} l \cos \theta=I \ddot{\theta}
+\end{array}</script><p>式1为小车的动力学方程，式2-4分别为杆件的水平受力分析、竖直受力分析和力矩平衡方程。由1和2可得运动方程，由式2-4可得另一个运动方程。</p>
+<script type="math/tex; mode=display">
+\begin{array}{c}
+(M+m) \ddot{x}+b \dot{x}+m l \ddot{\theta} \cos \theta-m l \dot{\theta}^{2} \sin \theta=F \\
+(I+m l) \ddot{\theta}+m g l \sin \theta=-m l \ddot{x} \cos \theta
+\end{array}</script><p><img src="/.com//force.png" alt="force_analysis"><br>由于上式过于复杂，且非线性很强，所以首先在平衡点附近进行线性化简化。根据观察可得$(x=0,\theta=\pi)$和$(x=0,\theta=0)$为系统的两个平衡点，但其中$(x=0,\theta=\pi)$是我们控制的目标，所以在$(x=0,\theta=\pi)$附近线性化，设$\theta=\phi+\pi$，在平衡点附近时有$\sin\theta=-\phi,\cos\theta=-1$，。可以得到线性化后的系统微分方程</p>
+<script type="math/tex; mode=display">
+\begin{array}{c}
+\left(I+m l^{2}\right) \ddot{\phi}-m g l \phi=m l \ddot{x} \\
+(M+m) \ddot{x}+b \dot{x}-m l \ddot{\phi}=u
+\end{array}</script><h2 id="2-状态空间模型"><a href="#2-状态空间模型" class="headerlink" title="2.状态空间模型"></a>2.状态空间模型</h2><p>可以看出在上式中出现了位置和角度的二阶倒数，选取$x$，$\dot{x}$,$\phi$，$\dot{\phi}$作为系统状态X，输出Y为$x$,$\phi$,整理上式得</p>
+<script type="math/tex; mode=display">
+\left\{\begin{array}{l}
+\ddot{x}=\frac{-\left(I+m l^{2}\right) b}{I(M+m)+M m l^{2}} \dot{x}+\frac{m^{2} g l^{2}}{I(M+m)+M m l^{2}} \phi+\frac{\left(I+m l^{2}\right)}{I(M+m)+M m l^{2}} u \\
+\ddot{\phi}=\frac{-m l b}{I(M+m)+M m l^{2}} \dot{x}+\frac{m g l(M+m)}{I(M+m)+M m l^{2}} \phi+\frac{m l}{I(M+m)+M m l^{2}} u
+\end{array}\right.</script><p>写作矩阵形式可得，</p>
+<script type="math/tex; mode=display">
+\left[\begin{array}{c}
+\dot{x} \\
+\ddot{x} \\
+\dot{\phi} \\
+\ddot{\phi}
+\end{array}\right]=\left[\begin{array}{cccc}
+0 & 1 & 0 & 0 \\
+0 & \frac{-\left(I+m l^{2}\right) b}{I(M+m)+M m l^{2}} & \frac{m^{2} g l^{2}}{I(M+m)+M m l^{2}} & 0 \\
+0 & 0 & 0 & 1 \\
+0 & \frac{-m l b}{I(M+m)+M m l^{2}} & \frac{m g l(M+m)}{I(M+m)+M m l^{2}} & 0
+\end{array}\right]\left[\begin{array}{l}
+x \\
+\dot{x} \\
+\phi \\
+\dot{\phi}
+\end{array}\right]+\left[\begin{array}{c}
+0 \\
+\frac{\left(I+m l^{2}\right)}{I(M+m)+M m l^{2}} \\
+0 \\
+u \\
+\frac{m l}{I(M+m)+M m l^{2}}
+\end{array}\right]</script><script type="math/tex; mode=display">
+\left[\begin{array}{l}
+x \\
+\phi
+\end{array}\right]=\left[\begin{array}{llll}
+1 & 0 & 0 & 0 \\
+0 & 0 & 1 & 0
+\end{array}\right]\left[\begin{array}{l}
+x \\
+\dot{x} \\
+\phi \\
+\dot{\phi}
+\end{array}\right]</script><p>在MATLAB中编写对应代码，控制步长T为0.02s，设置初始状态为$(x=0,\phi=\frac{\pi}{60})$，可以看出系统状态变化剧烈，有震荡衰减趋势，根据物理学常识判断，由于摩擦力的影响，系统最终会稳定在$\theta=0$的状态。所以初始状态是一个不稳定平衡点。<br><img src="/.com//instable_curve.png" alt="instable_curve"></p>
+<h2 id="3-能控能观性与系统零极点"><a href="#3-能控能观性与系统零极点" class="headerlink" title="3.能控能观性与系统零极点"></a>3.能控能观性与系统零极点</h2><h3 id="3-1-能控性分析"><a href="#3-1-能控性分析" class="headerlink" title="3.1 能控性分析"></a>3.1 能控性分析</h3><p>构建能控性矩阵，</p>
+<script type="math/tex; mode=display">
+Q=\left[\begin{array}{llll}
+B & A B & A^{2} B & A^{3} B
+\end{array}\right]</script><p>利用matlab指令，<strong>Q = ctrb(A,B)</strong> 可得，</p>
+<script type="math/tex; mode=display">
+Q=\left[\begin{array}{cccc}
+0 & 0.8974 & 1.3289 & -0.1789 \\
+0.8974 & 1.3289 & -0.1789 & 32.6145 \\
+1.9231 & 0 & 43.2322 & -0.3833 \\
+0 & 43.2322 & -0.3833 & 977.7655
+\end{array}\right]</script><p>利用指令rank(Q)，可得能控性矩阵满秩，所以系统可控。</p>
+<h3 id="3-2-能控性分析"><a href="#3-2-能控性分析" class="headerlink" title="3.2 能控性分析"></a>3.2 能控性分析</h3><p>构建能观性矩阵，</p>
+<script type="math/tex; mode=display">
+P=\left[\begin{array}{c}
+C \\
+C A \\
+C A^{2} \\
+C A^{3}
+\end{array}\right]</script><p>利用matlab指令，P=obsv(A,C)可得，</p>
+<script type="math/tex; mode=display">
+P=\left[\begin{array}{cccc}
+1 & 0 & 0 & 0 \\
+0 & 0 & 1 & 0 \\
+0 & 1 & 0 & 0 \\
+0 & 0 & 0 & 1 \\
+0 & -0.134615384615385 & 0.753846153846154 & 0 \\
+0 & -0.288461538461538 & 22.6153846153846 & 0 \\
+0 & 0.0181213017751479 & -0.101479289940828 & 0.753846153846154 \\
+0 & 0.0388313609467456 & -0.217455621301775 & 22.6153846153846
+\end{array}\right]</script><p>利用指令rank(P)，可得能观性矩阵满秩，所以系统可观。</p>
+<h3 id="3-3-零极点分析"><a href="#3-3-零极点分析" class="headerlink" title="3.3 零极点分析"></a>3.3 零极点分析</h3><p>利用matlab指令，sys=ss(A,B,C,D)；G=zpk(sys)，可得系统的传递函数。</p>
+<script type="math/tex; mode=display">
+\left\{\begin{array}{l}
+G_{1}(s)=\frac{0.89744(s+5.631)(s-4.016)}{s(s-4.751)(s+4.761)(s+0.125)} \\
+G_{2}(s)=\frac{1.9231(s-0.3057)(s+0.4403)}{(s-4.751)(s+4.761)(s+0.125)}
+\end{array}\right.</script><p>可以看出系统的极点并非全部为负实部，所以系统不稳定。</p>
+<h2 id="4-控制器设计"><a href="#4-控制器设计" class="headerlink" title="4.控制器设计"></a>4.控制器设计</h2><h3 id="4-1-oldschoolのPID"><a href="#4-1-oldschoolのPID" class="headerlink" title="4.1 oldschoolのPID"></a>4.1 oldschoolのPID</h3><p>在实际工程之中，由于模型十分复杂，很难建立精确模型，反而利用泛用性更好的PID控制能得到更好的效果。</p>
+<script type="math/tex; mode=display">
+F=K p_{\theta} * \operatorname{Err}(\theta)-K d_{\theta} * \dot{\theta}-K i_{\theta} * \int \operatorname{Err}(\theta) d t</script><p>这样可以控制杆件与竖直距离的夹角，但是无法控制小车的位移与速度，根据观察，杆件的夹角与小车速度变化存在一定的关系，所以再加一层PID控制，根据小车距离误差和速度改变杆件的期望角度。</p>
+<script type="math/tex; mode=display">
+\operatorname{Des}_{-} \theta=K p_{\mathrm{x}} * \operatorname{Err}(x)-K d_{x} * \dot{x}-K i_{x} * \int \operatorname{Err}(x) d t</script><p>设置初始状态为$(x=0,\phi=\frac{\pi}{20}),K p_{\theta}=100, K i_{\theta}=1, K d_{\theta}=20,K p_{x}=0.07, K i_{x}=0.07, K d_{x}=0.001,$仿真结果如图所示，可见系统在较大的初始扰动下，PID控制可以使系统逐渐稳定与初始状态，但是控制时间和效果一般般。这是因为PID控制没有利用系统内在的特性，这既是优势也是劣势，泛用性强的缺点就是控制效果稍差。<br><img src="/.com//pid_control.png" alt="pid"></p>
+<h3 id="4-2mordenのMIMO"><a href="#4-2mordenのMIMO" class="headerlink" title="4.2mordenのMIMO"></a>4.2mordenのMIMO</h3><p>由于系统可控可观，所以可以设计状态反馈器，利用matlab指令K=acker(A,B,P)，其中P为期望极点，将期望极点配置为[-5，-5，-5，-5]。通过指令得到增益向量K为</p>
+<script type="math/tex; mode=display">
+K=\left[\begin{array}{llll}
+-30.84 & -24.51 & 104.151 & 21.91
+\end{array}\right]</script><p>设置初始状态为$(x=0,\phi=\frac{\pi}{20})$，引入状态反馈，仿真结果如下图所示，可见系统在较大的初始扰动下，能够迅速地恢复初始位姿，比普通的PID不知道高到哪里去了。<br><img src="/.com//mimo_control.png" alt="mimo"></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/06/01/oldschool-PID-and-morden-MIMO/" data-id="cl3vek9420001nwtx1wehcose" data-title="[Matlab]先来点oldschool的PID，再来点现代控制" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2022/06/01/oldschool-PID-and-morden-MIMO/" data-id="cl3vgbqm200013wtx8ug09n8u" data-title="[Matlab]先来点oldschool的PID，再来点现代控制" class="article-share-link">Share</a>
       
       
       
@@ -312,5 +354,20 @@
 
 
   </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 </html>
