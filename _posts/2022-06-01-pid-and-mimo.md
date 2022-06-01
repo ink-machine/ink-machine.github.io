@@ -12,7 +12,7 @@ author:
 
 
 ## 1.运动学与动力学建模
-![cartpole](https://raw.githubusercontent.com/ink-machine/ink-machine.github.io/main/_posts/cartpole.png "一个三岁小孩都喜欢的倒立摆模型")
+![cartpole](https://raw.githubusercontent.com/ink-machine/ink-machine.github.io/main/cartpole.png "一个三岁小孩都喜欢的倒立摆模型")
 如图1所示，首先建立一个经典的一阶倒立摆模型，一辆小车顶部通过铰链与一个长杆相连，控制变量为作用于小车的水平推力F，受控变量为杆与竖直向下方向的夹角θ。
 
 | **变量名** | **含义**      | **值**         |
@@ -44,7 +44,7 @@ $$
 (I+m l) \ddot{\theta}+m g l \sin \theta=-m l \ddot{x} \cos \theta
 \end{array}
 $$
-![force_analysis](https://raw.githubusercontent.com/ink-machine/ink-machine.github.io/main/_posts/force.png)
+![force_analysis](https://raw.githubusercontent.com/ink-machine/ink-machine.github.io/main/force.png)
 由于上式过于复杂，且非线性很强，所以首先在平衡点附近进行线性化简化。根据观察可得$(x=0,\theta=\pi)$和$(x=0,\theta=0)$为系统的两个平衡点，但其中$(x=0,\theta=\pi)$是我们控制的目标，所以在$(x=0,\theta=\pi)$附近线性化，设$\theta=\phi+\pi$，在平衡点附近时有$\sin\theta=-\phi,\cos\theta=-1$，。可以得到线性化后的系统微分方程
 $$
 \begin{array}{c}
@@ -162,7 +162,7 @@ $$
 \operatorname{Des}_{-} \theta=K p_{\mathrm{x}} * \operatorname{Err}(x)-K d_{x} * \dot{x}-K i_{x} * \int \operatorname{Err}(x) d t
 $$
 设置初始状态为$(x=0,\phi=\frac{\pi}{20}),K p_{\theta}=100, K i_{\theta}=1, K d_{\theta}=20,K p_{x}=0.07, K i_{x}=0.07, K d_{x}=0.001,$仿真结果如图所示，可见系统在较大的初始扰动下，PID控制可以使系统逐渐稳定与初始状态，但是控制时间和效果一般般。这是因为PID控制没有利用系统内在的特性，这既是优势也是劣势，泛用性强的缺点就是控制效果稍差。
-![pid](https://raw.githubusercontent.com/ink-machine/ink-machine.github.io/main/_posts/pid_control.png)
+![pid](https://raw.githubusercontent.com/ink-machine/ink-machine.github.io/main/pid_control.png)
 
 ### 4.2mordenのMIMO
 由于系统可控可观，所以可以设计状态反馈器，利用matlab指令K=acker(A,B,P)，其中P为期望极点，将期望极点配置为[-5，-5，-5，-5]。通过指令得到增益向量K为
@@ -172,4 +172,4 @@ K=\left[\begin{array}{llll}
 \end{array}\right]
 $$
 设置初始状态为$(x=0,\phi=\frac{\pi}{20})$，引入状态反馈，仿真结果如下图所示，可见系统在较大的初始扰动下，能够迅速地恢复初始位姿，比普通的PID不知道高到哪里去了。
-![mimo](https://raw.githubusercontent.com/ink-machine/ink-machine.github.io/main/_posts/mimo_control.png)
+![mimo](https://raw.githubusercontent.com/ink-machine/ink-machine.github.io/main/mimo_control.png)
