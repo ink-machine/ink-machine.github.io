@@ -3,7 +3,7 @@ description: The inverted pendulum is the God of the motherfxxking world!
 author: Towl lynn
 avatar: /logo.jpeg
 email: towllynn@163.com
-
+subscribe: false
 plugins:
   - jekyll-seo-tag
   - jekyll-feed
@@ -36,8 +36,6 @@ logo: logo.jpeg
 social:
   name: Towl Lynn
   links:
-    - https://twitter.com/ink-machine
-    - https://www.facebook.com/ink-machine
     - https://github.com/ink-machine
 google_site_verification: u4WXQl0Eu66rsQo2kRdCNx
 lang: en
