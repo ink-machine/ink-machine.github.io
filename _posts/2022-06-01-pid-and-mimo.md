@@ -1,7 +1,7 @@
 ---
 layout: post
-toc: true
 math: true
+toc: true
 title: "[Matlab]先来点oldschool的PID，再来点现代控制"
 categories: MATLAB
 tags: [MATLAB, PID, MIMO]
@@ -13,7 +13,7 @@ author:
 
 ## 1.运动学与动力学建模
 ![cartpole](https://raw.githubusercontent.com/ink-machine/ink-machine.github.io/main/cartpole.png "一个三岁小孩都喜欢的倒立摆模型")
-如图1所示，首先建立一个经典的一阶倒立摆模型，一辆小车顶部通过铰链与一个长杆相连，控制变量为作用于小车的水平推力F，受控变量为杆与竖直向下方向的夹角θ。
+如图所示，首先建立一个经典的一阶倒立摆模型，一辆小车顶部通过铰链与一个长杆相连，控制变量为作用于小车的水平推力F，受控变量为杆与竖直向下方向的夹角θ。
 
 | **变量名** | **含义**      | **值**         |
 |:---------:|-------------|---------------|
