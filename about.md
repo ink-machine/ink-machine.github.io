@@ -4,4 +4,4 @@ title: About
 permalink: /about/
 ---
 
-Another minimal style of Jekyll theme for writers.
+About？Everything about the inverted pendulum！Inverted pendulum is all you need!
